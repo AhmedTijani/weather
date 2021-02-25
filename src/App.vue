@@ -11,7 +11,7 @@
         @keypress="fetchweather"
         />
       </div>
-      <div class="weather-wrap" v-if="typeof weather.main != 'undefined'">
+      <div class="weather-wrap" v-if= "typeof weather.main !== 'undefined'">
         <div class="location-box">
           <div class="location"> {{ weather.name}}, {{ weather.sys.country }}</div>
           <div class="date">{{ dateBuilder() }}</div>
@@ -32,8 +32,8 @@ export default {
   name: 'App',
   data() {
     return {
-      api_key: 'f8eb15d50bc40892b8a2e89b53ae903d',
-      url_base: 'https://api.openweathermap.org/data/2.5/',
+      api_key: process.env.VUE_APP_API_KEY,
+      url_base: process.env.VUE_APP_BASE_URL,
       query: '',
       weather: {}
     }
@@ -81,6 +81,9 @@ body{
   background-size: contain;
   background-position: bottom;
   transition: 0.4s;
+}
+.temp{
+  width:100%
 }
 #app.warm{
   background-image: url('./assets/warm-bg.jpg');
@@ -137,7 +140,7 @@ main{
 }
 .weather-box .temp{
   display: inline-block;
-  padding: 10px 250px;
+  padding: 10px;
   color: #fff;
   font-size: 102px;
   font-weight: 900;
